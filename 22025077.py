@@ -25,13 +25,11 @@ def read_data(file_name):
     df_change = df.drop(columns=["Series Name", "Country Name", "Country Code"])
     df_change = df_change.replace(np.nan, 0)
     df_transpose = np.transpose(df_change)
-    # print(df_transposed)
     df_transpose = df_transpose.reset_index()
     df_transpose = df_transpose.rename(columns={"index": "year", 0: "UK", 1: "India"})
 
     df_transpose = df_transpose.iloc[1:]
     df_transpose = df_transpose.dropna()
-    # print(df_transposed)
 
     df_transpose["year"] = df_transpose["year"].str[:4]
     df_transpose["year"] = pd.to_numeric(df_transpose["year"])
